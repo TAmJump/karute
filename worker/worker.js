@@ -8,8 +8,8 @@
 
 // 許可するオリジン（配信ドメインに合わせて変更）
 const ALLOW_ORIGINS = [
-  "https://karute.tamjump.com",
   "https://tamjump.github.io",
+  "https://karute.tamjump.com",
 ];
 
 function corsHeaders(origin) {

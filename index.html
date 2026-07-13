@@ -332,7 +332,7 @@ $$(".tabs button").forEach(b=>b.onclick=()=>{
 /* ===== API ===== */
 const API_ENDPOINT=/claude|usercontent|localhost|127\.0\.0\.1/.test(location.hostname)
   ? "https://api.anthropic.com/v1/messages"
-  : "https://karute-api.tamjump.com/v1/messages";
+  : "https://karute-api.animalb001.workers.dev/v1/messages";
 async function callAPI(content){
   const res=await fetch(API_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:1000,messages:[{role:"user",content}]})});
   if(!res.ok)throw new Error("API応答エラー ("+res.status+")");
