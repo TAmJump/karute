@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>受診前サポート｜名医カルテAI（患者さま用・イメージ）</title>
+<title>受診前サポート｜名医カルテAI（患者さま用）</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@700;900&display=swap" rel="stylesheet">
@@ -14,28 +14,22 @@
     --chip:#FBFBFB; --chip-on:#FDE7EA; --chip-on-b:#E60012;
     --grn:#1F7A34; --grn-bg:#E9F6EC; --amb:#9A5B00; --amb-bg:#FFF3DF; --rd:#C62828; --rd-bg:#FDECEA;
   }
-  *{box-sizing:border-box;margin:0;padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  *{box-sizing:border-box;margin:0;padding:0;}
   body{background:var(--bg);color:var(--ink);
     font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif;
     font-size:15px;line-height:1.65;}
-  /* top bar (app style) */
   .top{background:var(--paper);border-bottom:1px solid var(--line);}
   .top .in{max-width:900px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:12px;}
   .logo{font-family:"Noto Serif JP",serif;font-weight:900;font-size:22px;}
   .logo b{color:var(--red);}
   .logo .en{font-family:"Noto Sans JP";font-weight:500;font-size:11px;letter-spacing:.22em;color:var(--sub);margin-left:8px;}
   .tag{margin-left:auto;font-size:12px;color:var(--sub);border:1px solid var(--line-dk);border-radius:20px;padding:4px 12px;}
-
   .wrap{max-width:900px;margin:0 auto;padding:22px 20px 60px;}
-
-  /* disclaimer band */
   .discl{background:var(--paper);border:1.5px solid var(--red);border-left:6px solid var(--red);border-radius:8px;padding:14px 18px;margin-bottom:22px;}
   .discl b{color:var(--red-dk);}
   .discl p{font-size:13.5px;color:#3a3a3a;margin-top:4px;}
-
   .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;}
   @media(max-width:760px){.grid{grid-template-columns:1fr;}}
-
   .card{background:var(--paper);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
   .card>h2{font-size:15px;font-weight:700;padding:13px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;}
   .card>h2 .n{font-family:"Noto Serif JP",serif;color:var(--red);font-size:13px;letter-spacing:.1em;}
@@ -43,7 +37,6 @@
   .blk:last-child{border-bottom:none;}
   .blk h3{font-size:13.5px;font-weight:700;margin-bottom:9px;}
   .blk h3 .q{color:var(--sub);font-weight:400;font-size:12px;margin-left:6px;}
-
   label.f{display:block;font-size:12px;color:var(--sub);margin:8px 0 3px;}
   select,input[type=text],input[type=number],textarea{
     width:100%;font-family:inherit;font-size:14px;color:var(--ink);
@@ -51,31 +44,29 @@
   textarea{resize:vertical;min-height:64px;}
   .row2{display:flex;gap:10px;} .row2>div{flex:1;}
   .vit{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
-
   .chips{display:flex;flex-wrap:wrap;gap:7px;}
   .chip{font-size:13px;border:1px solid var(--line-dk);background:var(--chip);border-radius:20px;padding:6px 13px;cursor:pointer;user-select:none;transition:.12s;}
   .chip:hover{border-color:#b8b8b8;}
   .chip.on{background:var(--chip-on);border-color:var(--chip-on-b);color:var(--red-dk);font-weight:700;}
   .chip.rf.on{background:#FDE0E0;border-color:var(--rd);color:var(--rd);}
-
   .seg{display:flex;gap:0;border:1px solid var(--line-dk);border-radius:8px;overflow:hidden;}
   .seg span{flex:1;text-align:center;font-size:13px;padding:8px 4px;cursor:pointer;background:#fff;}
   .seg span+span{border-left:1px solid var(--line);}
   .seg span.on{background:var(--red);color:#fff;font-weight:700;}
-
   .go{width:100%;margin-top:16px;font-family:inherit;font-size:16px;font-weight:700;color:#fff;background:var(--red);
     border:none;border-radius:9px;padding:15px;cursor:pointer;transition:.15s;}
   .go:hover{background:var(--red-dk);}
-
-  /* result */
+  .go:disabled{opacity:.6;cursor:default;}
   .result .empty{padding:44px 22px;text-align:center;color:var(--sub);font-size:14px;}
+  .loading{padding:44px 22px;text-align:center;color:var(--sub);font-size:14px;}
+  .spin{width:24px;height:24px;border:3px solid var(--line);border-top-color:var(--red);border-radius:50%;animation:sp .8s linear infinite;margin:0 auto 12px;}
+  @keyframes sp{to{transform:rotate(360deg);}}
   .triage{padding:18px;text-align:center;border-bottom:1px solid var(--line);}
   .triage .sig{display:inline-block;font-size:20px;font-weight:900;padding:12px 26px;border-radius:10px;}
   .triage.g .sig{background:var(--grn-bg);color:var(--grn);border:1.5px solid var(--grn);}
   .triage.a .sig{background:var(--amb-bg);color:var(--amb);border:1.5px solid var(--amb);}
   .triage.r .sig{background:var(--rd-bg);color:var(--rd);border:1.5px solid var(--rd);}
   .triage .sub{font-size:13px;color:#444;margin-top:8px;}
-
   .rblk{padding:14px 18px;border-bottom:1px solid var(--line);}
   .rblk:last-child{border-bottom:none;}
   .rblk .lab{font-size:12px;color:var(--red-dk);font-weight:700;letter-spacing:.03em;margin-bottom:6px;}
@@ -88,7 +79,6 @@
   .watch li{list-style:none;font-size:13px;margin:4px 0;padding-left:16px;position:relative;color:#444;}
   .watch li::before{content:"!";position:absolute;left:0;color:var(--red);font-weight:900;}
   .rnote{font-size:11.5px;color:var(--sub);padding:12px 18px;background:#FBFBFB;}
-
   .demo-flag{display:inline-block;font-size:11px;color:var(--amb);background:var(--amb-bg);border:1px solid #E8C98A;border-radius:6px;padding:2px 8px;}
 </style>
 </head>
@@ -100,7 +90,7 @@
 
   <div class="wrap">
     <div class="discl">
-      <b>これは「診断」ではありません。</b><span class="demo-flag" style="margin-left:8px;">イメージ用デモ</span>
+      <b>これは「診断」ではありません。</b>
       <p>入力内容から、受診の目安・受診先・医師に伝える情報の整理をお手伝いします。最終的な診断・治療は医師が行います。強い症状・急な変化があるときは、迷わず医療機関か救急（119）にご連絡ください。</p>
     </div>
 
@@ -108,7 +98,6 @@
       <!-- 入力 -->
       <div class="card">
         <h2>ご記入ください<span class="n">INPUT</span></h2>
-
         <div class="blk">
           <h3>01　あなたのこと</h3>
           <div class="row2">
@@ -120,12 +109,10 @@
           <div id="pregWrap" style="display:none"><label class="f">妊娠の可能性</label>
             <select id="preg"><option>なし／不明</option><option>ある・妊娠中</option></select></div>
         </div>
-
         <div class="blk">
           <h3>02　今日いちばん気になる症状</h3>
           <textarea id="chief" placeholder="例：3日前から咳と発熱が続いている"></textarea>
         </div>
-
         <div class="blk">
           <h3>03　いつから・つらさ</h3>
           <label class="f">いつから</label>
@@ -135,7 +122,6 @@
           <label class="f" style="margin-top:10px;">つらさ</label>
           <div class="seg" data-seg="sev"><span>軽い</span><span>中くらい</span><span>強い</span></div>
         </div>
-
         <div class="blk">
           <h3>04　体の数値<span class="q">測れる範囲でOK</span></h3>
           <div class="vit">
@@ -146,21 +132,18 @@
             <div><label class="f">SpO₂（%）<span class="q">あれば</span></label><input type="number" id="spo2" placeholder="98"></div>
           </div>
         </div>
-
         <div class="blk">
           <h3>05　いっしょにある症状</h3>
           <div class="chips" data-chip="assoc">
             <span class="chip">発熱</span><span class="chip">咳</span><span class="chip">息切れ</span><span class="chip">胸の痛み</span><span class="chip">お腹の痛み</span><span class="chip">頭痛</span><span class="chip">めまい</span><span class="chip">吐き気</span><span class="chip">下痢</span><span class="chip">発疹</span><span class="chip">のどの痛み</span><span class="chip">しびれ</span>
           </div>
         </div>
-
         <div class="blk">
           <h3>06　緊急のサイン<span class="q">あてはまれば選んでください</span></h3>
           <div class="chips" data-chip="red">
             <span class="chip rf">意識がもうろう</span><span class="chip rf">強い胸の痛み</span><span class="chip rf">息が苦しい</span><span class="chip rf">ろれつ／手足の麻痺</span><span class="chip rf">けいれん</span><span class="chip rf">止まらない出血</span><span class="chip rf">突然の激しい頭痛</span>
           </div>
         </div>
-
         <div class="blk">
           <h3>07　持病・薬・アレルギー</h3>
           <div class="chips" data-chip="hist">
@@ -171,9 +154,8 @@
           <label class="f">アレルギー</label>
           <input type="text" id="allergy" placeholder="例：ペニシリン">
         </div>
-
         <div class="blk">
-          <button class="go" onclick="assess()">仮の見立てを確認する</button>
+          <button class="go" id="goBtn" onclick="assess()">仮の見立てを確認する</button>
         </div>
       </div>
 
@@ -187,6 +169,8 @@
 
 <script>
   const state={change:'',sev:'',assoc:new Set(),red:new Set(),hist:new Set()};
+  const DEFAULT_WATCH=['息苦しさ・胸の痛みが強くなる','意識がぼんやりする／ろれつが回らない','水分がとれない・ぐったりする','症状が急に悪くなる'];
+
   function togglePreg(){document.getElementById('pregWrap').style.display=document.getElementById('sex').value==='女性'?'block':'none';}
   document.querySelectorAll('[data-seg]').forEach(seg=>{
     seg.querySelectorAll('span').forEach(s=>s.onclick=()=>{seg.querySelectorAll('span').forEach(x=>x.classList.remove('on'));s.classList.add('on');state[seg.dataset.seg]=s.textContent;});
@@ -196,7 +180,42 @@
     box.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{c.classList.toggle('on');const set=state[key];c.classList.contains('on')?set.add(c.textContent):set.delete(c.textContent);});
   });
 
+  /* ===== API（医師用と同じWorker経由・hostnameで自動切替） ===== */
+  const API_ENDPOINT=/claude|usercontent|localhost|127\.0\.0\.1/.test(location.hostname)
+    ? "https://api.anthropic.com/v1/messages"
+    : "https://karute-api.animalb001.workers.dev/v1/messages";
+  async function callAPI(content){
+    const res=await fetch(API_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:1000,messages:[{role:"user",content}]})});
+    if(!res.ok)throw new Error("API "+res.status);
+    const d=await res.json();return (d.content||[]).filter(b=>b.type==="text").map(b=>b.text).join("\n");
+  }
+  function parseJSON(s){if(!s)return null;let t=s.replace(/```json|```/g,"").trim();const a=t.indexOf("{"),b=t.lastIndexOf("}");if(a<0||b<0)return null;try{return JSON.parse(t.slice(a,b+1));}catch{return null;}}
+  const esc=s=>(s||'').toString().replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+  function collect(){
+    const g=id=>document.getElementById(id).value.trim();
+    return {
+      age:g('age'),sex:g('sex'),preg:g('preg'),chief:g('chief'),onset:g('onset'),
+      change:state.change,sev:state.sev,
+      temp:parseFloat(g('temp'))||0,pulse:g('pulse'),bpH:parseFloat(g('bpH'))||0,bpL:g('bpL'),spo2:parseFloat(g('spo2'))||0,
+      assoc:[...state.assoc],red:[...state.red],hist:[...state.hist],meds:g('meds'),allergy:g('allergy')
+    };
+  }
+  function buildSummary(i){
+    const p=[];
+    if(i.chief)p.push('主訴：'+i.chief);
+    if(i.sex||i.age)p.push('本人：'+[i.sex,i.age].filter(Boolean).join('・')+(i.preg&&i.preg!=='なし／不明'?'・'+i.preg:''));
+    if(i.onset||i.change||i.sev)p.push('経過：'+[i.onset,i.change,(i.sev?'つらさ'+i.sev:'')].filter(Boolean).join('／'));
+    const v=[];if(i.temp)v.push('体温'+i.temp+'℃');if(i.bpH)v.push('血圧'+i.bpH+'/'+(i.bpL||'-'));if(i.pulse)v.push('脈'+i.pulse);if(i.spo2)v.push('SpO2 '+i.spo2+'%');
+    if(v.length)p.push('数値：'+v.join('・'));
+    if(i.assoc.length)p.push('随伴症状：'+i.assoc.join('・'));
+    if(i.hist.length)p.push('持病：'+i.hist.join('・'));
+    if(i.meds)p.push('服薬：'+i.meds);
+    if(i.allergy)p.push('アレルギー：'+i.allergy);
+    return p.join('\n');
+  }
   function likelyDept(a){
+    a=new Set(a);
     if(a.has('息切れ')||a.has('咳')||a.has('のどの痛み'))return'呼吸器内科 / 内科';
     if(a.has('胸の痛み'))return'循環器内科 / 内科';
     if(a.has('お腹の痛み')||a.has('下痢')||a.has('吐き気'))return'消化器内科 / 内科';
@@ -204,59 +223,80 @@
     if(a.has('発疹'))return'皮膚科';
     return'内科（一般）';
   }
-  function candidates(a,temp){
-    const c=[];
-    const fever=(a.has('発熱')||temp>=37.5);
-    if(fever&&(a.has('咳')||a.has('のどの痛み')))c.push(['かぜ・気道の感染症','mi','発熱と咳・のどの症状の組み合わせ']);
-    if(fever&&a.has('息切れ'))c.push(['肺の炎症（肺炎など）','hi','発熱に息切れを伴う']);
-    if(a.has('お腹の痛み')&&a.has('下痢'))c.push(['胃腸炎','mi','腹痛と下痢の組み合わせ']);
-    if(a.has('頭痛')&&!a.has('しびれ'))c.push(['緊張型頭痛など','lo','頭痛が主症状']);
-    if(a.has('胸の痛み'))c.push(['胸部の要精査','hi','胸痛は原因の見極めが必要']);
-    if(c.length===0)c.push(['入力からは絞り込みが難しい','lo','症状を追加すると候補が変わります']);
-    return c.slice(0,3);
-  }
-  function esc(s){return (s||'').replace(/</g,'&lt;');}
 
-  function assess(){
-    const temp=parseFloat(document.getElementById('temp').value)||0;
-    const spo2=parseFloat(document.getElementById('spo2').value)||0;
-    const bpH=parseFloat(document.getElementById('bpH').value)||0;
-    const a=state.assoc, red=state.red;
+  /* 緊急サイン → AIに関わらず即・受診表示（安全側） */
+  function hardEmergency(i){ return i.red.length>0 || (i.spo2>0 && i.spo2<92); }
+
+  /* ルールベースのフォールバック（AI接続不可時） */
+  function demoResult(i,summary){
+    const a=new Set(i.assoc);
     let level='g',sig='通常受診・様子見',sub='急ぐ必要は低めです。改善しなければ受診してください。';
-    // amber conditions
-    if(temp>=38.5||(spo2&&spo2<95)||a.has('息切れ')||a.has('胸の痛み')||bpH>=180||state.sev==='強い'||state.change==='悪化している'){
+    if(i.temp>=38.5||(i.spo2&&i.spo2<95)||a.has('息切れ')||a.has('胸の痛み')||i.bpH>=180||i.sev==='強い'||i.change==='悪化している'){
       level='a';sig='早めに受診';sub='本日〜近日中の受診をおすすめします。';
     }
-    // red conditions
-    if(red.size>0||(spo2&&spo2<92)){
-      level='r';sig='すぐに受診・救急を検討';sub='緊急のサインがあります。医療機関へ連絡、または救急（119）を検討してください。';
-    }
-    const dept=likelyDept(a);
-    const cands=red.size>0?[['緊急対応が優先','hi','まず安全確保と受診']]:candidates(a,temp);
-    // summary for doctor
-    const parts=[];
-    const chief=document.getElementById('chief').value.trim(); if(chief)parts.push('主訴：'+esc(chief));
-    const age=document.getElementById('age').value,sex=document.getElementById('sex').value;
-    if(age||sex)parts.push('本人：'+[sex,age].filter(Boolean).join('・'));
-    const onset=document.getElementById('onset').value; if(onset)parts.push('経過：'+onset+(state.change?'／'+state.change:'')+(state.sev?'／つらさ'+state.sev:''));
-    const vit=[]; if(temp)vit.push('体温'+temp+'℃'); if(bpH)vit.push('血圧'+bpH+'/'+(document.getElementById('bpL').value||'-')); const pulse=document.getElementById('pulse').value; if(pulse)vit.push('脈'+pulse); if(spo2)vit.push('SpO2 '+spo2+'%');
-    if(vit.length)parts.push('数値：'+vit.join('・'));
-    if(a.size)parts.push('随伴症状：'+[...a].join('・'));
-    if(state.hist.size)parts.push('持病：'+[...state.hist].join('・'));
-    const meds=document.getElementById('meds').value.trim(); if(meds)parts.push('服薬：'+esc(meds));
-    const alg=document.getElementById('allergy').value.trim(); if(alg)parts.push('アレルギー：'+esc(alg));
+    const fever=(a.has('発熱')||i.temp>=37.5),c=[];
+    if(fever&&(a.has('咳')||a.has('のどの痛み')))c.push({name:'かぜ・気道の感染症',lk:'mi',rs:'発熱と咳・のどの症状の組み合わせ'});
+    if(fever&&a.has('息切れ'))c.push({name:'肺の炎症（肺炎など）',lk:'hi',rs:'発熱に息切れを伴う'});
+    if(a.has('お腹の痛み')&&a.has('下痢'))c.push({name:'胃腸炎',lk:'mi',rs:'腹痛と下痢の組み合わせ'});
+    if(a.has('頭痛')&&!a.has('しびれ'))c.push({name:'緊張型頭痛など',lk:'lo',rs:'頭痛が主症状'});
+    if(a.has('胸の痛み'))c.push({name:'胸部の要精査',lk:'hi',rs:'胸痛は原因の見極めが必要'});
+    if(!c.length)c.push({name:'入力からは絞り込みが難しい',lk:'lo',rs:'症状を追加すると候補が変わります'});
+    return {level,sig,sub,dept:likelyDept(i.assoc),candidates:c.slice(0,3),summary,watch:DEFAULT_WATCH,note:'AIに接続できなかったため、入力にもとづく簡易の目安（デモ計算）を表示しています。'};
+  }
 
+  function buildPrompt(i){
+    return `あなたは受診前相談を支援するアシスタントです。これは診断ではなく、受診の目安・受診先の目安・医師に伝える情報の整理が目的です。確定診断・治療・処方は行いません。断定を避け「可能性が考えられます」等の候補表現を使い、緊急性があれば受診・救急を促します。日本語・簡潔に。
+JSONのみ出力：{"triage":"emergency|soon|routine|selfcare","triage_reason":"","dept":"受診先の目安","candidates":[{"name":"","likelihood":"高|中|低","reason":""}],"watch":["すぐ受診すべきサイン"],"doctor_summary":""}
+--- 患者入力 ---
+${buildSummary(i)||'（入力が少ない）'}`;
+  }
+  function fromAI(j,i,summary){
+    const map={emergency:['r','すぐに受診・救急を検討'],soon:['a','早めに受診'],routine:['g','通常受診・様子見'],selfcare:['g','自宅で様子見・経過観察']};
+    const m=map[j.triage]||['g','通常受診・様子見'];
+    const lk={'高':'hi','中':'mi','低':'lo'};
+    const cands=(Array.isArray(j.candidates)?j.candidates:[]).slice(0,4).map(c=>({name:c.name||'',lk:lk[c.likelihood]||'lo',rs:c.reason||''}));
+    return {
+      level:m[0],sig:m[1],sub:j.triage_reason||'',
+      dept:j.dept||likelyDept(i.assoc),
+      candidates:cands.length?cands:[{name:'絞り込みが難しい',lk:'lo',rs:'症状を追加すると候補が変わります'}],
+      summary, watch:(Array.isArray(j.watch)&&j.watch.length?j.watch:DEFAULT_WATCH),
+      note:'AIによる仮の見立てです。診断ではなく候補提示で、最終判断は医師が行います。'
+    };
+  }
+
+  function render(o){
     const lk={hi:['可能性 高','hi'],mi:['可能性 中','mi'],lo:['可能性 低','lo']};
-    let html='';
-    html+='<div class="triage '+level+'"><div class="sig">'+sig+'</div><div class="sub">'+sub+'</div></div>';
-    html+='<div class="rblk"><div class="lab">受診先の目安</div>'+dept+'</div>';
-    html+='<div class="rblk"><div class="lab">考えられる方向性（候補・要医師確認）</div>';
-    cands.forEach(c=>{const l=lk[c[1]];html+='<div class="cand"><span class="nm">'+c[0]+'</span><span class="lk '+l[1]+'">'+l[0]+'</span><div class="rs">'+c[2]+'</div></div>';});
-    html+='</div>';
-    html+='<div class="rblk"><div class="lab">医師に伝える情報（この画面を見せてください）</div><div class="summary">'+(parts.join('\n')||'（入力が少ないため要約できません）')+'</div></div>';
-    html+='<div class="rblk"><div class="lab">こんな時はすぐ受診</div><ul class="watch"><li>息苦しさ・胸の痛みが強くなる</li><li>意識がぼんやりする／ろれつが回らない</li><li>水分がとれない・ぐったりする</li><li>症状が急に悪くなる</li></ul></div>';
-    html+='<div class="rnote">※ これはイメージ用のデモです。実際の版では、AI分析とその医療機関に蓄積された症例をもとに候補を提示します。診断・治療の最終判断は医師が行います。</div>';
-    const r=document.getElementById('res'); r.innerHTML=html; r.scrollIntoView({behavior:'smooth',block:'nearest'});
+    let h='';
+    h+='<div class="triage '+o.level+'"><div class="sig">'+esc(o.sig)+'</div>'+(o.sub?'<div class="sub">'+esc(o.sub)+'</div>':'')+'</div>';
+    h+='<div class="rblk"><div class="lab">受診先の目安</div>'+esc(o.dept)+'</div>';
+    h+='<div class="rblk"><div class="lab">考えられる方向性（候補・要医師確認）</div>';
+    o.candidates.forEach(c=>{const l=lk[c.lk]||lk.lo;h+='<div class="cand"><span class="nm">'+esc(c.name)+'</span><span class="lk '+l[1]+'">'+l[0]+'</span>'+(c.rs?'<div class="rs">'+esc(c.rs)+'</div>':'')+'</div>';});
+    h+='</div>';
+    h+='<div class="rblk"><div class="lab">医師に伝える情報（この画面を見せてください）</div><div class="summary">'+(esc(o.summary)||'（入力が少ないため要約できません）')+'</div></div>';
+    h+='<div class="rblk"><div class="lab">こんな時はすぐ受診</div><ul class="watch">'+o.watch.map(w=>'<li>'+esc(w)+'</li>').join('')+'</ul></div>';
+    h+='<div class="rnote">※ '+esc(o.note)+' 診断・治療の最終判断は医師が行います。強い症状・急な変化があれば医療機関か救急（119）へ。</div>';
+    const r=document.getElementById('res');r.innerHTML=h;r.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
+
+  async function assess(){
+    const i=collect(),summary=buildSummary(i),btn=document.getElementById('goBtn');
+    if(hardEmergency(i)){
+      render({level:'r',sig:'すぐに受診・救急を検討',sub:'緊急のサインがあります。医療機関へ連絡、または救急（119）を検討してください。',
+        dept:likelyDept(i.assoc),candidates:[{name:'緊急対応が優先',lk:'hi',rs:'まず安全の確保と受診'}],
+        summary,watch:DEFAULT_WATCH,note:'安全のため、緊急サイン該当時はAIの結果に関わらず受診を優先しています。'});
+      return;
+    }
+    btn.disabled=true;btn.textContent='見立てを作成中…';
+    document.getElementById('res').innerHTML='<div class="loading"><div class="spin"></div>入力内容から仮の見立てを作成しています…</div>';
+    try{
+      const j=parseJSON(await callAPI([{type:'text',text:buildPrompt(i)}]));
+      if(!j)throw new Error('parse');
+      render(fromAI(j,i,summary));
+    }catch(e){
+      render(demoResult(i,summary));
+    }finally{
+      btn.disabled=false;btn.textContent='仮の見立てを確認する';
+    }
   }
 </script>
 </body>
